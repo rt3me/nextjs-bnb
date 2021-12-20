@@ -9,15 +9,6 @@ export default function House(props) {
         {props.type} - {props.town}
       </p>
       <p>{props.title}</p>
-
-      <style jsx>{`
-        .houses {
-          display: grid;
-          grid-template-columns: 49% 49%;
-          grid-template-rows: 300px 300px;
-          grid-gap: 2%;
-        }
-      `}</style>
     </div>
   )
 }
