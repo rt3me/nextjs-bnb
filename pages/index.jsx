@@ -7,7 +7,7 @@ import styles from '../styles/Home.module.css';
 
 export default function Home() {
   return (
-    <div>
+    <React.Fragment>
       <h2>Places to stay</h2>
 
       <div className="houses">
@@ -26,6 +26,6 @@ export default function Home() {
           grid-gap: 2%;
         }
       `}</style>
-    </div>
+    </React.Fragment>
   );
 }
