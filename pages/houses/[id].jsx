@@ -1,15 +1,20 @@
+import Head from 'next/head'
+import React from 'react';
 import houses from '../../houses';
 
 export default function House(props) {
   return (
-    <div>
+    <React.Fragment>
+      <Head>
+        <title>{props.house.title}</title>
+      </Head>
       <img src={props.house.picture} alt={props.house.title} width="100%" />
 
       <p>
         {props.house.type} - {props.house.town}
       </p>
       <p>{props.house.title}</p>
-    </div>
+    </React.Fragment>
   )
 }
 
