@@ -3,8 +3,6 @@ import 'react-day-picker/lib/style.css';
 
 export default function DateRangePicker() {
   return (
-    <div>
-      <DayPickerInput />
-    </div>
+    <DayPickerInput />
   )
 }
