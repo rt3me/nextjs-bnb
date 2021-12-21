@@ -4,7 +4,7 @@ import 'react-day-picker/lib/style.css';
 import dateFnsFormat from 'date-fns/format';
 import dateFnsParse from 'date-fns/parse';
 
-const parseDate = (str, format, locale) => {
+const parseDate = (str, format, locale) => { 
   const parsed = dateFnsParse(str, format, new Date(), { locale })
 
   return DateUtils.isDate(parsed) ? parsed : null;
@@ -24,6 +24,13 @@ export default function DateRangePicker() {
           format={format}
           parseDate={parseDate}
           placeholder={`${dateFnsFormat(new Date(), format)}`}
+          dayPickerProps={{
+            modifiers: {
+              disabled: {
+                before: new Date()
+              }
+            }
+          }}
         />
       </div>
       <div>
@@ -33,6 +40,13 @@ export default function DateRangePicker() {
           format={format}
           parseDate={parseDate}
           placeholder={`${dateFnsFormat(new Date(), format)}`}
+          dayPickerProps={{
+            modifiers: {
+              disabled: {
+                before: new Date()
+              }
+            }
+          }}
         />
       </div>
 
