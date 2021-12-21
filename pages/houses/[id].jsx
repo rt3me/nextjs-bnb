@@ -1,5 +1,5 @@
-import Head from 'next/head'
 import React from 'react';
+import Head from 'next/head'
 import houses from '../../houses';
 import Layout from '../../components/Layout';
 
@@ -9,12 +9,30 @@ export default function House(props) {
       <Head>
         <title>{props.house.title}</title>
       </Head>
-      <img src={props.house.picture} alt={props.house.title} width="100%" />
+      <div className="container">
+        <article>
+          <img src={props.house.picture} alt={props.house.title} width="100%" />
 
-      <p>
-        {props.house.type} - {props.house.town}
-      </p>
-      <p>{props.house.title}</p>
+          <p>
+            {props.house.type} - {props.house.town}
+          </p>
+          <p>{props.house.title}</p>
+        </article>
+        <aside></aside>
+      </div>
+
+      <style jsx>{`
+        .container {
+          display: grid;
+          grid-template-columns: 60% 40%;
+          grid-gap: 30px;
+        }
+
+        aside {
+          border: 1px solid #ccc;
+          padding: 20px;
+        }
+      `}</style>
     </React.Fragment>
   )
 
