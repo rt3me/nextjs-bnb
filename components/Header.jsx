@@ -3,7 +3,7 @@ import Link from 'next/link';
 export default function Header(props) {
   return (
     <div className="nav-container">
-      <Link>
+      <Link href="/">
         <a>
           <img src="/img/logo.png" alt="Logo Navigation" />
         </a>
