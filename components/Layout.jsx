@@ -17,8 +17,22 @@ export default function Layout(props) {
       {
         showModal && (
           <Modal close={() => setShowModal(false)}>
-            {showLoginModal && <LoginModal />}
-            {showRegistrationModal && <RegistrationModal />}
+            {showLoginModal && (
+              <LoginModal
+                showSignup={() => {
+                  setShowRegistrationModal(true)
+                  setShowLoginModal(false)
+                }}
+              />
+            )}
+            {showRegistrationModal && (
+              <RegistrationModal
+                showLogin={() => {
+                  setShowRegistrationModal(false)
+                  setShowLoginModal(true)
+                }}
+              />
+            )}
           </Modal>
         )
       }

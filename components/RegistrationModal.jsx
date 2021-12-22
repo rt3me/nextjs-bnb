@@ -14,6 +14,12 @@ export default function RegistrationModal(props) {
             placeholder="Enter password again"
           />
           <button>Sign up</button>
+          <p>
+            Already have an account?{' '}
+            <a href="javascript:;" onClick={() => props.showLogin()}>
+              Log in
+            </a>
+          </p>
         </form>
       </div>
     </React.Fragment>
