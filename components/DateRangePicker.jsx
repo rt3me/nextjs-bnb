@@ -31,7 +31,7 @@ const numberOfNightsBetweenDates = (startDate, endDate) => {
   return dayCount;
 }
 
-export default function DateRangePicker() {
+export default function DateRangePicker({ datesChanged }) {
   const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState(tomorrow);
 
@@ -58,6 +58,9 @@ export default function DateRangePicker() {
               const newEndDate = new Date(day);
               newEndDate.setDate(newEndDate.getDate() + 1);
               setEndDate(newEndDate);
+              datesChanged(day, newEndDate);
+            } else {
+              datesChanged(day, endDate);
             }
           }}
         />
@@ -82,6 +85,7 @@ export default function DateRangePicker() {
           }}
           onDayChange={(day) => {
             setEndDate(day);
+            datesChanged(startDate, day);
           }}
         />
       </div>
