@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './Header';
+import Modal from './Modal';
 
 export default function Layout(props) {
+  const [showModal, setShowModal] = useState(true);
+
   return (
     <React.Fragment>
       <Header />
       <main>{props.content}</main>
+
+      {showModal && <Modal close={() => setShowModal(false)}>test</Modal>}
 
       <style jsx>{`
         main {
