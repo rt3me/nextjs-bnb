@@ -5,19 +5,18 @@ import 'react-day-picker/lib/style.css';
 import dateFnsFormat from 'date-fns/format';
 import dateFnsParse from 'date-fns/parse';
 
-const today = new Date();
-const tomorrow = new Date(today);
-tomorrow.setDate(tomorrow.getDate() + 1);
-
 const parseDate = (str, format, locale) => { 
   const parsed = dateFnsParse(str, format, new Date(), { locale })
-
   return DateUtils.isDate(parsed) ? parsed : null;
 }
 
 const formatDate = (date, format, locale) => dateFnsFormat(date, format, { locale });
 
 const format = 'MMM dd yyyy';
+
+const today = new Date();
+const tomorrow = new Date(today);
+tomorrow.setDate(tomorrow.getDate() + 1);
 
 const numberOfNightsBetweenDates = (startDate, endDate) => {
   const start = new Date(startDate);
@@ -28,6 +27,8 @@ const numberOfNightsBetweenDates = (startDate, endDate) => {
     dayCount++;
     start.setDate(start.getDate() + 1);
   }
+
+  return dayCount;
 }
 
 export default function DateRangePicker() {
@@ -53,9 +54,11 @@ export default function DateRangePicker() {
           }}
           onDayChange={(day) => {
             setStartDate(day);
-            const newEndDate = new Date(day);
-            newEndDate.setDate(newEndDate.getDate() + 1);
-            setEndDate(newEndDate);
+            if (numberOfNightsBetweenDates(day, endDate) < 1) {
+              const newEndDate = new Date(day);
+              newEndDate.setDate(newEndDate.getDate() + 1);
+              setEndDate(newEndDate);
+            }
           }}
         />
       </div>
@@ -78,7 +81,7 @@ export default function DateRangePicker() {
             }
           }}
           onDayChange={(day) => {
-            setEndDate(day)
+            setEndDate(day);
           }}
         />
       </div>
