@@ -24,6 +24,9 @@ export default function House(props) {
           <DateRangePicker
             datesChanged={(startDate, endDate) => {
               console.log(`startDate: ${startDate} endDate: ${endDate}`);
+              setNumberOfNightsBetweenDates(
+                calcNumberOfNightsBetweenDates(startDate, endDate)
+              );
               setDateChosen(true);
             }}
           />
@@ -45,7 +48,21 @@ export default function House(props) {
     </React.Fragment>
   )
 
+  const calcNumberOfNightsBetweenDates = (startDate, endDate) => {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    let dayCount = 0;
+
+    while (end > start) {
+      dayCount++;
+      start.setDate(start.getDate() + 1);
+    }
+
+    return dayCount;
+  }
+
   const [dateChosen, setDateChosen] = useState(false);
+  const [numberOfNightsBetweenDates, setNumberOfNightsBetweenDates] = useState(0);
 
   return <Layout content={content} />
 }
