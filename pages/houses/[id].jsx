@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head'
 import houses from '../../houses';
 import Layout from '../../components/Layout';
@@ -21,7 +21,12 @@ export default function House(props) {
         </article>
         <aside>
           <h2>Choose a date</h2>
-          <DateRangePicker />
+          <DateRangePicker
+            datesChanged={(startDate, endDate) => {
+              console.log(`startDate: ${startDate} endDate: ${endDate}`);
+              setDateChosen(true);
+            }}
+          />
         </aside>
       </div>
 
@@ -39,6 +44,8 @@ export default function House(props) {
       `}</style>
     </React.Fragment>
   )
+
+  const [dateChosen, setDateChosen] = useState(false);
 
   return <Layout content={content} />
 }
